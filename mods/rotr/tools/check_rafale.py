@@ -67,14 +67,56 @@ def main():
     button_name = 'Command_ConstructEuropeJetRafaleF4'
     button = block(buttons, 'CommandButton', button_name)
     require(field(button, 'Object') == 'EuropeJetRafaleF4', 'Wrong build target')
-    for menu_name in ('EuropeanDeploymentZone', field(unit, 'CommandSet')):
+    for menu_name in ('EuropeanDeploymentZone', 'EuropeanDeploymentZoneBombers', field(unit, 'CommandSet')):
         menu = block(sets, 'CommandSet', menu_name)
         slots = re.findall(r'^\s*(\d+)\s*=\s*(\S+)', menu, re.M)
         require(len(slots) == len(dict(slots)), 'Duplicate menu slots')
-        if menu_name == 'EuropeanDeploymentZone':
-            require(dict(slots).get('4') == button_name, 'Missing Deployment Zone button')
+        if menu_name == 'EuropeanDeploymentZoneBombers':
+            require(dict(slots).get('3') == button_name, 'Missing bomber-mode aircraft button')
         for _, command in slots:
             block(buttons, 'CommandButton', command)
+    fighter = dict(re.findall(r'^\s*(\d+)\s*=\s*(\S+)',
+                              block(sets, 'CommandSet', 'EuropeanDeploymentZone'), re.M))
+    bomber = dict(re.findall(r'^\s*(\d+)\s*=\s*(\S+)',
+                             block(sets, 'CommandSet', 'EuropeanDeploymentZoneBombers'), re.M))
+    require(fighter['3'] == 'Command_ConstructEuropeJetHarrier', 'Missing fighter')
+    require(button_name not in fighter.values(), 'Bomber leaked into fighter menu')
+    require('Command_ConstructEuropeJetHarrier' not in bomber.values(), 'Fighter leaked into bomber menu')
+    require({k: v for k, v in fighter.items() if k not in ('3', '4')} ==
+            {k: v for k, v in bomber.items() if k not in ('3', '4')},
+            'Helicopter/battlegroup controls differ between modes')
+    building = block(read(INI / 'Object/Europe/Buildings/DeploymentZone.ini'),
+                     'Object', 'EuropeDeploymentZone')
+    require(field(building, 'CommandSet') == 'EuropeanDeploymentZone', 'Wrong initial mode')
+    require(not re.search(r'^\s*MaxSimultaneousOfType\s*=', building, re.M), 'Building limit remains')
+    modules = {}
+    for match in re.finditer(r'Behavior = CommandSetUpgrade (ModuleTag_\w+Menu)\s*\n(.*?)^  End',
+                             building, re.M | re.S):
+        modules[match[1]] = match[2]
+    for mode, menu, target in [('Bomber', fighter, 'EuropeanDeploymentZoneBombers'),
+                               ('Fighter', bomber, 'EuropeanDeploymentZone')]:
+        command = 'Command_EuropeDeployment' + mode + 'Mode'
+        require(menu['4'] == command, 'Wrong switch direction')
+        switch = block(buttons, 'CommandButton', command)
+        require(field(switch, 'Command') == 'OBJECT_UPGRADE', 'Not a local mode switch')
+        require('NOT_QUEUEABLE' in field(switch, 'Options'), 'Switch waits in production queue')
+        upgrade_name = field(switch, 'Upgrade')
+        upgrade = block(read(INI / 'Upgrade.ini'), 'Upgrade', upgrade_name)
+        require(field(upgrade, 'Type') == 'OBJECT', 'Switch affects all buildings')
+        require(float(field(upgrade, 'BuildTime')) == 0 and float(field(upgrade, 'BuildCost')) == 0,
+                'Mode switch must be instant and free')
+        module = modules['ModuleTag_' + mode + 'Menu']
+        require(field(module, 'TriggeredBy') == upgrade_name, 'Missing mode trigger')
+        require(field(module, 'CommandSet') == target, 'Wrong target menu')
+        opposite = 'Fighter' if mode == 'Bomber' else 'Bomber'
+        require('Upgrade_EuropeDeployment' + opposite + 'Mode' in field(module, 'RemovesUpgrades').split(),
+                'Opposite mode cannot be selected again')
+        if mode == 'Fighter':
+            require(upgrade_name in field(module, 'RemovesUpgrades').split(), 'Return trigger not cleared')
+        mode_strings = read(ROOT / 'archives/Rotr_English/Data/Generals.str')
+        for label in ('TextLabel', 'DescriptLabel'):
+            require(len(re.findall(r'^' + re.escape(field(switch, label)) + r'\s*$', mode_strings, re.M)) == 1,
+                    'Missing mode label')
     weapon = block(read(INI / 'Weapon.ini'), 'Weapon', field(unit, 'Weapon').split()[1])
     require(field(weapon, 'ProjectileObject') in definitions, 'Missing projectile')
     require(field(weapon, 'AutoReloadsClip') == 'Yes', 'Must reload without a runway')
