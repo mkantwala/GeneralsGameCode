@@ -32314,3 +32314,30 @@ End
 Nada
 ""
 End
+OBJECT:EuropeRafaleF4
+"Rafale F4"
+END
+
+CONTROLBAR:ConstructEuropeRafaleF4
+"&Rafale F4"
+END
+
+CONTROLBAR:ToolTipEuropeRafaleF4
+"Ground-attack bomber.\nDrops two conventional bombs and reloads while airborne.\nRequires the Research and Development Compound.\nStrong vs. Structures and Ground Groups\nWeak vs. Anti-Air"
+END
+
+CONTROLBAR:EuropeDeploymentFighterMode
+"Switch to Fighters"
+END
+
+CONTROLBAR:ToolTipEuropeDeploymentFighterMode
+"Show Harrier production.\nHelicopters and battlegroups remain available.\nAlready queued units will finish normally."
+END
+
+CONTROLBAR:EuropeDeploymentBomberMode
+"Switch to Bombers"
+END
+
+CONTROLBAR:ToolTipEuropeDeploymentBomberMode
+"Show Rafale F4 production.\nHelicopters and battlegroups remain available.\nAlready queued units will finish normally."
+END
