@@ -3,13 +3,14 @@
 Imported from `ROTRBeta_185.zip`, supplied by the project owner via ModDB.
 This is the 1.85 release, without later patches. The game engine above this
 directory is unchanged. Engine compatibility and gameplay have not been tested.
+The development changes below extend the imported release.
 
 ## Editable content
 
 Each original `.gib` archive has its own directory under `archives/`.
 Keeping those directories separate preserves overlapping archive paths and
-the original archive priority when rebuilding. Files retain their original
-bytes, encodings, filenames, and attribution.
+the original archive priority when rebuilding. Development edits retain the
+existing encodings, filenames, and attribution.
 
 Start with `archives/Rotr_INI/Data/INI/`:
 
@@ -32,6 +33,9 @@ changelog, and installer license notice.
 
 `manifest.json` records the package and archive SHA-256 hashes, and the path,
 size, and SHA-256 hash of every imported archive and loose runtime file.
+It describes the original release: `verify_import.py` detects differences from
+that baseline, including intentional development edits. Do not regenerate the
+release manifest to make edited files appear to be original release content.
 
 ## Rebuild mod archives
 
@@ -47,6 +51,40 @@ with the required original Zero Hour files. Avoid mixing rebuilt archives with
 another installed ROTR version. The tools do not install or launch the game,
 modify the registry, or replace its executable. Runtime integration with the
 engine fork remains a separate step.
+
+## Buildable USA B-2 Spirit
+
+The USA Airfield offers the B-2 after construction of the Strategy Center. It
+costs $3,200, takes 40 seconds to build, and has 150 health with `AirplaneArmor`.
+Each sortie carries two conventional bombs, each dealing 250 base damage in a
+radius of 30, released 300 milliseconds apart. It returns to the airfield for
+a ten-second reload. Cruise, attack, and return speeds are 150, 180, and 150;
+turn rate is 75 degrees per second and flight height is 100.
+
+The B-2 is naturally stealthed, reveals while attacking or taking damage, and
+recloaks after three seconds once those conditions end. Detectors can reveal
+it. The USA Countermeasures upgrade supplies `CountermeasuresAirplaneArmor`
+and flares with 30% evasion, replenished at the airfield. It does not receive
+Aurora attack-run targeting protection or the support aircraft's health upgrade.
+
+The aircraft uses the stock B-2 meshes (`AVB3bmbr`, `AVB3bmbr_D`, and
+`AVB3bmbr_D1`) and ROTR's `AVB3bmbr_C` bomb-release helper at 40% scale. The
+main meshes and their textures come from the required Zero Hour installation;
+they are not included in this repository. It reuses the B-2 Carpet Bombing icon,
+USA stealth aircraft voices, and Aurora's bomb projectile and `AURORA_BOMB`
+damage type. Target armor affects actual damage. The existing Carpet Bombing
+support aircraft is separate and unchanged.
+
+Run the data integration and archive round-trip checks from the repository root:
+
+```sh
+python mods/rotr/tools/check_b2.py
+```
+
+These checks cover production, references, stealth and upgrade wiring, the
+imported bomb-release attachment, and lossless BIG packing. In-game validation
+is still needed for the base-game meshes, parking, takeoff, landing, bomb
+delivery, rearming, stealth reveal/recloak, flares, and combat balance.
 
 ## Ownership and publication
 
