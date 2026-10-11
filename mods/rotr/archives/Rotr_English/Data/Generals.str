@@ -701,6 +701,18 @@ CONTROLBAR:ConstructAmericaInfantryRanger
 "&Ranger"
 END
 
+OBJECT:ChinaH20Bomber
+"H-20 Bomber"
+END
+
+CONTROLBAR:ConstructChinaJetH20
+"H-20 &Bomber"
+END
+
+CONTROLBAR:ToolTipChinaBuildH20
+"Supersonic strike bomber.\nProtected during its high-speed attack run; vulnerable on return.\nDrops one powerful bomb, then reloads at the airfield.\nRequires a Propaganda Center.\nStrong vs. Structures\nWeak vs. Anti-Air on return"
+END
+
 CONTROLBAR:ConstructAmericaJetAurora
 "Aurora &Bomber"
 END
