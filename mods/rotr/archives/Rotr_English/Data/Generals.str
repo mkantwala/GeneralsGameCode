@@ -721,6 +721,20 @@ CONTROLBAR:ConstructAmericaJetRaptor
 "Rap&tor"
 END
 
+// TheSuperHackers @feature Adds USA B-2 unit and production labels.
+OBJECT:AmericaB2Bomber
+"B-2 Spirit"
+END
+
+CONTROLBAR:ConstructAmericaB2Bomber
+"B-2 S&pirit"
+END
+
+CONTROLBAR:ToolTipUSABuildB2Bomber
+"Stealth Bomber.\n Drops two heavy bombs per sortie.\n Returns to the airfield to rearm.\n Revealed when attacking or taking damage; recloaks after 3 seconds.\n Benefits from the Countermeasures upgrade.\n Can only attack ground targets.\n\n Strong vs. buildings, grouped ground units\n Weak vs. detectors, fighters, concentrated anti-air units"
+END
+
+
 CONTROLBAR:ConstructAmericaJetStealthFighter
 "&Nighthawk"
 END
