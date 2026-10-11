@@ -1,0 +1,54 @@
+00000000.016           > 00000000.016_temp
+00000000.256           > 00000000.256_temp
+Install_Final.bmp      > Install_Final.bmp_temp
+
+00000000.016_           > 00000000.016
+00000000.256_           > 00000000.256
+Install_Final_rotr.bmp  > Install_Final.bmp
+
+!!Rotr_Patch.gib    > !!Rotr_Patch.big
+!Rotr_2D.gib        > !Rotr_2D.big
+!Rotr_AI.gib        > !Rotr_AI.big
+!Rotr_Audio.gib     > !Rotr_Audio.big
+!Rotr_Blckr.gib     > !Rotr_Blckr.big
+!Rotr_English.gib   > !Rotr_English.big
+!Rotr_INI.gib       > !Rotr_INI.big
+!Rotr_Maps.gib      > !Rotr_Maps.big
+!Rotr_Music.gib     > !Rotr_Music.big
+!Rotr_Terrain.gib   > !Rotr_Terrain.big
+!Rotr_Textures.gib  > !Rotr_Textures.big
+!Rotr_Voice.gib     > !Rotr_Voice.big
+!Rotr_W3D.gib       > !Rotr_W3D.big
+!Rotr_Window.gib    > !Rotr_Window.big
+
+Data\scripts\MultiplayerScripts.scb  > Data\scripts\MultiplayerScripts.nope
+Data\scripts\Scripts.ini             > Data\scripts\Scripts.nope
+Data\scripts\SkirmishScripts.scb     > Data\scripts\SkirmishScripts.nope
+
+
+00000000.016_           < 00000000.016
+00000000.256_           < 00000000.256
+Install_Final_rotr.bmp  < Install_Final.bmp
+
+00000000.016           < 00000000.016_temp
+00000000.256           < 00000000.256_temp
+Install_Final.bmp      < Install_Final.bmp_temp
+
+!!Rotr_Patch.gib    < !!Rotr_Patch.big
+!Rotr_2D.gib        < !Rotr_2D.big
+!Rotr_AI.gib        < !Rotr_AI.big
+!Rotr_Audio.gib     < !Rotr_Audio.big
+!Rotr_Blckr.gib     < !Rotr_Blckr.big
+!Rotr_English.gib   < !Rotr_English.big
+!Rotr_INI.gib       < !Rotr_INI.big
+!Rotr_Maps.gib      < !Rotr_Maps.big
+!Rotr_Music.gib     < !Rotr_Music.big
+!Rotr_Terrain.gib   < !Rotr_Terrain.big
+!Rotr_Textures.gib  < !Rotr_Textures.big
+!Rotr_Voice.gib     < !Rotr_Voice.big
+!Rotr_W3D.gib       < !Rotr_W3D.big
+!Rotr_Window.gib    < !Rotr_Window.big
+
+Data\scripts\MultiplayerScripts.scb  < Data\scripts\MultiplayerScripts.nope
+Data\scripts\Scripts.ini             < Data\scripts\Scripts.nope
+Data\scripts\SkirmishScripts.scb     < Data\scripts\SkirmishScripts.nope

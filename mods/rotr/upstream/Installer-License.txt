@@ -1,0 +1,5 @@
+All content contained inside this package is owned by SWR Productions, EA Games and partners from SWR who contributed to this project.
+
+This includes all textures, models, sound effects, voice overs, terrain textures, 2D art, interfaces and maps.
+
+You are not permitted to use any of the content withing this package or re-use it for any other purpose than playing and enjoying the mod.
