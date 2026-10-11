@@ -29038,6 +29038,20 @@ CONTROLBAR:ToolTipFireWaspDroneAssault
 "Order drones to harass a target."
 END
 
+// TheSuperHackers @feature Adds Russia Tu-160 unit and production labels.
+OBJECT:RussiaTu160Bomber
+"Tu-160 White Swan"
+END
+
+CONTROLBAR:ConstructRussiaTu160Bomber
+"Tu-160 &White Swan"
+END
+
+CONTROLBAR:ToolTipRussiaBuildTu160Bomber
+"Heavy Bomber.\n Drops three conventional bombs per sortie.\n Returns to the airfield to rearm.\n Can only attack ground targets.\n Vulnerable to anti-air fire throughout its attack run.\n\n Strong vs. buildings, grouped ground units\n Weak vs. fighters, concentrated anti-air units"
+END
+
+
 OBJECT:RussiaTU160
 "TU-160 Blackjack"
 END
