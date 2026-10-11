@@ -1,0 +1,42 @@
+name: Import ROTR 1.85
+
+on:
+  push:
+    branches: [rotr-base]
+    paths:
+      - .github/workflows/import-rotr.yml
+      - mods/rotr/tools/import_release.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rotr-release-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    if: github.repository == 'mkantwala/GeneralsGameCode' && github.ref == 'refs/heads/rotr-base'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: rotr-base
+      - name: Extract the verified release
+        run: |
+          if [ -f mods/rotr/manifest.json ]; then
+            echo 'ROTR release has already been imported.'
+          else
+            python3 mods/rotr/tools/import_release.py
+          fi
+      - name: Commit complete mod files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mods/rotr
+          if ! git diff --cached --quiet; then
+            git -c gc.auto=0 commit -m 'Import verified ROTR 1.85 gameplay definitions and assets'
+            git push origin HEAD:rotr-base
+          fi
