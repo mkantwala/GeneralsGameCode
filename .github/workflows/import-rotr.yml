@@ -31,6 +31,8 @@ jobs:
           else
             python3 mods/rotr/tools/import_release.py
           fi
+      - name: Verify imported files
+        run: python3 mods/rotr/tools/verify_import.py
       - name: Commit complete mod files
         run: |
           git config user.name 'github-actions[bot]'
