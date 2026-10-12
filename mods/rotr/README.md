@@ -48,7 +48,7 @@ reload. Cruise, attack, and return speeds are 170, 220, and 150 respectively;
 turn rate is 90 degrees per second and flight height is 100. It has no stealth,
 countermeasure upgrade, or Aurora attack-run targeting protection.
 
-The aircraft reuses `RVTU160`, `RVTU160_D`, and `RVTU160_D1` at 50% scale, the
+The aircraft reuses `RVTU160`, `RVTU160_D`, and `RVTU160_D1` at 70% scale, the
 stock FOAB icon, and existing Russian aircraft voices. It uses Aurora's bomb
 projectile and `AURORA_BOMB` damage type, so target armor affects actual damage.
 The existing FOAB support aircraft is separate and unchanged.
@@ -95,7 +95,7 @@ and flares with 30% evasion, replenished at the airfield. It does not receive
 Aurora attack-run targeting protection or the support aircraft's health upgrade.
 
 The aircraft uses the stock B-2 meshes (`AVB3bmbr`, `AVB3bmbr_D`, and
-`AVB3bmbr_D1`) and ROTR's `AVB3bmbr_C` bomb-release helper at 40% scale. The
+`AVB3bmbr_D1`) and ROTR's `AVB3bmbr_C` bomb-release helper at 70% scale. The
 main meshes and their textures come from the required Zero Hour installation;
 they are not included in this repository. It reuses the B-2 Carpet Bombing icon,
 USA stealth aircraft voices, and Aurora's bomb projectile and `AURORA_BOMB`

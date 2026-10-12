@@ -2,7 +2,7 @@
 
 Adds a Rafale F4 to Deployment Zone slot 3 in Bomber mode, requiring the Research
 and Development Compound. The unit intentionally reuses the existing Vulcan visual models at
-50% scale; its silhouette is not that of a real Rafale. Existing support-power
+70% scale; its silhouette is not that of a real Rafale. Existing support-power
 Vulcans remain separate. This is a gameplay adaptation with automatic airborne
 reloading, not a simulation of real aircraft rearming.
 
